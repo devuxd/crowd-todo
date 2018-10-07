@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Table, Row,Col} from 'reactstrap';
-//import {JsonTable} from 'react-json-table';
+import {Table, Row, Col} from 'reactstrap';
+
 const JsonTable = require('ts-react-json-table');
 
 class TodoList extends Component {
@@ -41,13 +41,40 @@ class TodoList extends Component {
 
     render() {
         return (
-            <div >
+            <div>
                 <Row>
-                    <Col sm="4"/>
-                    <Col sm="8">
-                        < JsonTable classNemae='table' rows={this.fetchData()}/>
+                    <Col sm="2"/>
+                    <Col sm="7">
+                        <Table responsive striped bordered>
+                            <thead>
+                            <tr>
+                                {/*<th>#</th>*/}
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {this.fetchData().map(item => {
+                                return (
+                                    <tr>
+                                        {/*<th scope="row">1</th>*/}
+                                        <td>{item.title}</td>
+                                        <td>{item.description}</td>
+                                        <td>{item.status}</td>
+                                    </tr>
+                                )
+                            })
+                            }
+
+
+                            </tbody>
+                        </Table>
+
                     </Col>
                 </Row>
+                <br/>
+                <br/>
             </div>
 
 

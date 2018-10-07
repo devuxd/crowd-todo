@@ -56,11 +56,7 @@ class Create extends Component {
     render() {
         return (
             <div className="container">
-                {/*<header className="App-header">*/}
-                    {/*/!*<img src={logo} className="App-logo" alt="logo"/>*!/*/}
-                    {/*<img src={logo} className="App-logo" alt="my logo"/>*/}
-                    {/*<h1 className="App-title">Organize your tasks with <strong>Crowd Todo</strong></h1>*/}
-                {/*</header>*/}
+
                 <br/>
                 <Row>
                     <Col sm="2"/>
@@ -111,8 +107,7 @@ class Create extends Component {
                                     <FormGroup>
 
                                         <Col sm={{size: 3, offset: 5}}>
-                                            {/*<Button color="secondary" size="lg" type="submit" >Add it!</Button>*/}
-
+                                         
                                             <Button color="secondary" size="md" block>Save it</Button>
                                         </Col>
                                     </FormGroup>
@@ -122,6 +117,7 @@ class Create extends Component {
                         </Card>
                     </Col>
                 </Row>
+                <br/>
             </div>
         );
     }
