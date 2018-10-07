@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, FormGroup, Label, Input,  Col, Card, CardBody, CardHeader, Row} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Col, Card, CardBody, CardHeader, Row} from 'reactstrap';
 
 import '../App.css';
 import axios from 'axios';
@@ -35,21 +35,22 @@ class Create extends Component {
         console.log('todo: ', todo);
         axios.post('/endpoints/addTodo', {todo})
             .then(res => {
-                if (res.status === 200) {
-                    this.setState({
-                        todoTitle: '',
-                        todoDescription: '',
-                        todoPriority: 1
-                    });
+                    if (res.status === 200) {
+                        this.setState({
+                            todoTitle: '',
+                            todoDescription: '',
+                            todoPriority: 1
+                        });
 
-                    alert("You have saved a todo Successfully!");
+                        alert("You have saved a todo Successfully!");
 
-                } else {
-                    alert("Error:" + res);
+                    } else {
+                        alert("Error:" + res);
+                    }
+                    console.log('addTodo response: ', res);
+                    // console.log(res.data);
                 }
-                console.log('addTodo response: ', res);
-                // console.log(res.data);
-            })
+            )
 
     }
 
@@ -80,7 +81,7 @@ class Create extends Component {
                                     <FormGroup row>
                                         <Col sm={1}/>
                                         <Col sm={2}>
-                                        <Label  for="Desc"> Description </Label>
+                                            <Label for="Desc"> Description </Label>
                                         </Col>
                                         <Col sm={5}>
                                             <Input type="textarea" id="Desc" name="todoDescription"
@@ -91,7 +92,7 @@ class Create extends Component {
                                     <FormGroup row>
                                         <Col sm={1}/>
                                         <Col sm={2}>
-                                        <Label  for="priorityId"> Priority</Label>
+                                            <Label for="priorityId"> Priority</Label>
                                         </Col>
                                         <Col sm={5}>
                                             <Input type="select" id="priorityId" name="todoPriority"
@@ -109,7 +110,7 @@ class Create extends Component {
                                         {/*<Col sm={{size: 3, offset: 5}}>*/}
                                         {/*<Col sm={1}/>*/}
                                         {/*<Col sm={7}>*/}
-                                            <Button color="primary" size="lg" block>Save it</Button>
+                                        <Button color="primary" size="lg" block>Save it</Button>
                                         {/*</Col>*/}
                                         {/*/!*</Col>*!/*/}
                                         {/*<Col sm={1}/>*/}

@@ -1,11 +1,36 @@
 import React, {Component} from 'react';
 import {Table, Row, Col, Button} from 'reactstrap';
-
+import axios from 'axios';
 const JsonTable = require('ts-react-json-table');
 
 class TodoList extends Component {
     state = {
         todoArray: []
+    };
+    deleteIt =(event)=>{
+
+        const todo = {
+            id: event.target.value
+        };
+        axios.post('/endpoints/deleteTodo',{todo})
+            .then(res => {
+                    if (res.status === 200) {
+                        this.setState({
+                            todoTitle: '',
+                            todoDescription: '',
+                            todoPriority: 1
+                        });
+
+                        alert("You have saved a todo Successfully!");
+
+                    } else {
+                        alert("Error:" + res);
+                    }
+                    console.log('addTodo response: ', res);
+                    // console.log(res.data);
+                }
+            )
+
     };
 
     fetchData() {
@@ -43,7 +68,7 @@ class TodoList extends Component {
         return (
             <div>
                 <Row>
-                    <Col sm="2"/>
+                    <Col sm="1"/>
                     <Col sm="9">
                         <Table responsive striped bordered>
                             <thead>
@@ -58,14 +83,14 @@ class TodoList extends Component {
                             <tbody>
                             {this.fetchData().map(item => {
                                 return (
-                                    <tr>
+                                    <tr key={item.id}>
                                         {/*<th scope="row">1</th>*/}
                                         <td>{item.title}</td>
                                         <td>{item.description}</td>
                                         <td>{item.status}</td>
 
                                         <td>
-                                            <Button color="secondary" size="sm" block>Delete it</Button>
+                                            <Button color="secondary" size="sm" block onClick={this.deleteIt} value={item.id}>Delete it</Button>
 
                                             <Button color="secondary" size="sm" block>Update it</Button>
                                         </td>
