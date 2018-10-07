@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Row, Col} from 'reactstrap';
+import {Table, Row, Col, Button} from 'reactstrap';
 
 const JsonTable = require('ts-react-json-table');
 
@@ -44,7 +44,7 @@ class TodoList extends Component {
             <div>
                 <Row>
                     <Col sm="2"/>
-                    <Col sm="7">
+                    <Col sm="9">
                         <Table responsive striped bordered>
                             <thead>
                             <tr>
@@ -52,6 +52,7 @@ class TodoList extends Component {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Status</th>
+                                <th>Operation</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,6 +63,12 @@ class TodoList extends Component {
                                         <td>{item.title}</td>
                                         <td>{item.description}</td>
                                         <td>{item.status}</td>
+
+                                        <td>
+                                            <Button color="secondary" size="sm" block>Delete it</Button>
+
+                                            <Button color="secondary" size="sm" block>Update it</Button>
+                                        </td>
                                     </tr>
                                 )
                             })
