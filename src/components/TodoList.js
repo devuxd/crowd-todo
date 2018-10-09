@@ -5,51 +5,24 @@ import axios from 'axios';
 const JsonTable = require('ts-react-json-table');
 
 class TodoList extends Component {
-    state = {
-        todoArray: []
-    };
 
-    deleteIt = (event) => {
-
-        const todo = {
-            id: event.target.value
-        };
-        // new Promise((resolve, reject) => {
-        console.log('ex1');
-        const resultOfDelete = axios.post('/endpoints/deleteTodo', {todo});
-
-        console.log('resultOfDelete', resultOfDelete);
-        console.log('ex2');
-        resultOfDelete.then(response => {
-            console.log('response',response);
-
-            if (response.status === 200) {
-                alert("You have DELETED a todo Successfully!");
-                console.log('ex4');
-            }else{
-                alert("Error, failed to DELETE!");
-            }
-        }).catch(error => {
-            alert('! ' + error);
-        });
-
-    }
 
 
     fetchData() {
         if (this.props.data.current == null) {
-            return this.state.todoArray;
+            return null;
         }
         const todoListJson = this.props.data.current;
-        console.log('list2:', todoListJson);
-        var result = [];
+
+
+        const result = [];
         for (var key in todoListJson.todoList) {
 
             result.push(todoListJson.todoList[key]);
         }
 
-
-        var result2 = [];
+        console.log('datalist',result);
+        const result2 = [];
         for (var i = 0; i < result.length; i++) {
             result2.push({
                 "id": result[i].id,
@@ -61,15 +34,17 @@ class TodoList extends Component {
                 "repeat": result[i].repeat
             });
         }
-        console.log('state', this.state.todoArray);
+
 
         return result2;
 
     }
 
     render() {
-        return (
+        const data =this.fetchData();
+        return ( data &&
             <div>
+
                 <Row>
                     <Col sm="1"/>
                     <Col sm="9">
@@ -84,6 +59,7 @@ class TodoList extends Component {
                             </tr>
                             </thead>
                             <tbody>
+
                             {this.fetchData().map(item => {
                                 return (
                                     <tr key={item.id}>
@@ -92,10 +68,11 @@ class TodoList extends Component {
                                         <td>{item.status}</td>
 
                                         <td>
-                                            <Button color="secondary" size="sm" block onClick={this.deleteIt}
+                                            <Button color="secondary" size="sm" block onClick={this.props.onDelete}
                                                     value={item.id}>Delete it</Button>
 
-                                            <Button color="secondary" size="sm" block>Update it</Button>
+                                            <Button color="secondary" size="sm" block onClick={this.props.onUpdate}
+                                                    value={item.id}>Update it</Button>
                                         </td>
                                     </tr>
                                 )

@@ -4,17 +4,25 @@ import {Button, Form, FormGroup, Label, Input, Col, Card, CardBody, CardHeader, 
 import '../App.css';
 import axios from 'axios';
 
+
+
 class Create extends Component {
-    state = {
-        todoTitle: '',
-        todoDescription: '',
-        todoPriority: ''
-    };
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            todoTitle: '',
+            todoDescription: '',
+            todoPriority: ''
+        };
+
+        //updateState = updateState.bind(this)
+    }
 
 
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
-        console.log('state:', this.state);
+        //console.log('state:', this.state);
     }
 
     handleSubmit = (event) => {
