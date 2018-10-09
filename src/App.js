@@ -35,6 +35,47 @@ class App extends Component {
         };
     }
 
+    handleChange = (event) => {
+        this.setState({[event.target.name]: event.target.value});
+
+    };
+
+    handleSubmit = (event) => {
+        // alert('A name was submitted: ' + this.state.todoTitle + 'desc: ' + this.state.todoDescription);
+        event.preventDefault();
+        const min = 1;
+        const max = 10000;
+        const rand = min + Math.floor(Math.random() * (max - min));
+        const todo = {
+            id: rand,
+            title: this.state.todoTitle,
+            description: this.state.todoDescription,
+            // priority: this.state.todoPriority,
+            priority: 2,
+            userId: 'emad.aghayi',
+            dataStoreId: 'schoolTasks'
+        };
+        console.log('todo: ', todo);
+        axios.post('/endpoints/addTodo', {todo})
+            .then(res => {
+                    if (res.status === 200) {
+                        this.setState({
+                            todoTitle: '',
+                            todoDescription: '',
+                            todoPriority: 1
+                        });
+
+                        alert("You have saved a todo Successfully!");
+
+                    } else {
+                        alert("Error:" + res);
+                    }
+                    console.log('addTodo response: ', res);
+                    // console.log(res.data);
+                }
+            )
+
+    };
 
     deleteIt = (event) => {
 
@@ -90,7 +131,7 @@ class App extends Component {
                 </header>
 
                 <div>
-                    <Create/>
+                    <Create onSubmit={this.handleSubmit} onChange={this.handleChange} stateObj={this.state}/>
 
                     <PersistableTodoList persistablePath={'todoList'} formValue={this.state.todos} onDelete={this.deleteIt}
                                          onUpdate={this.updateIt}/>

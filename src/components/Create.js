@@ -5,62 +5,8 @@ import '../App.css';
 import axios from 'axios';
 
 
-
 class Create extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            todoTitle: '',
-            todoDescription: '',
-            todoPriority: ''
-        };
-
-        //updateState = updateState.bind(this)
-    }
-
-
-    handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value});
-        //console.log('state:', this.state);
-    }
-
-    handleSubmit = (event) => {
-        // alert('A name was submitted: ' + this.state.todoTitle + 'desc: ' + this.state.todoDescription);
-        event.preventDefault();
-        const min = 1;
-        const max = 10000;
-        const rand = min + Math.floor(Math.random() * (max - min));
-        const todo = {
-            id: rand,
-            title: this.state.todoTitle,
-            description: this.state.todoDescription,
-            // priority: this.state.todoPriority,
-            priority: 2,
-            userId: 'emad.aghayi',
-            dataStoreId: 'schoolTasks'
-        };
-        console.log('todo: ', todo);
-        axios.post('/endpoints/addTodo', {todo})
-            .then(res => {
-                    if (res.status === 200) {
-                        this.setState({
-                            todoTitle: '',
-                            todoDescription: '',
-                            todoPriority: 1
-                        });
-
-                        alert("You have saved a todo Successfully!");
-
-                    } else {
-                        alert("Error:" + res);
-                    }
-                    console.log('addTodo response: ', res);
-                    // console.log(res.data);
-                }
-            )
-
-    }
 
     render() {
         return (
@@ -73,7 +19,7 @@ class Create extends Component {
                         <Card>
                             <CardHeader>Add a todo</CardHeader>
                             <CardBody>
-                                <Form onSubmit={this.handleSubmit}>
+                                <Form onSubmit={this.props.onSubmit}>
                                     <FormGroup row/>
                                     <FormGroup row>
                                         <Col sm={1}/>
@@ -82,8 +28,8 @@ class Create extends Component {
                                         </Col>
                                         <Col sm={5}>
                                             <Input type="text" id="title" name="todoTitle"
-                                                   value={this.state.todoTitle}
-                                                   onChange={this.handleChange}/>
+                                                   value={this.props.todoTitle}
+                                                   onChange={this.props.onChange}/>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -93,8 +39,8 @@ class Create extends Component {
                                         </Col>
                                         <Col sm={5}>
                                             <Input type="textarea" id="Desc" name="todoDescription"
-                                                   value={this.state.todoDescription}
-                                                   onChange={this.handleChange}/>
+                                                   value={this.props.todoDescription}
+                                                   onChange={this.props.onChange}/>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -104,7 +50,7 @@ class Create extends Component {
                                         </Col>
                                         <Col sm={5}>
                                             <Input type="select" id="priorityId" name="todoPriority"
-                                                   value={this.state.todoPriority} onChange={this.handleChange}>
+                                                   value={this.props.todoPriority} onChange={this.props.onChange}>
                                                 <option value="1">Low</option>
                                                 <option value="2">Medium</option>
                                                 <option value="3">High</option>
@@ -118,7 +64,7 @@ class Create extends Component {
                                         {/*<Col sm={{size: 3, offset: 5}}>*/}
                                         {/*<Col sm={1}/>*/}
                                         {/*<Col sm={7}>*/}
-                                        <Button color="primary" size="lg" block>Save it</Button>
+                                        <Button color="primary" size="lg" block>Save or update it</Button>
                                         {/*</Col>*/}
                                         {/*/!*</Col>*!/*/}
                                         {/*<Col sm={1}/>*/}
