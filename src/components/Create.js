@@ -38,7 +38,7 @@ class Create extends Component {
                                             <Label for="Desc"> Description </Label>
                                         </Col>
                                         <Col sm={5}>
-                                            <Input type="textarea" id="Desc" name="todoDescription"
+                                            <Input type="textarea" id="Desc" name="todoDescription" placeholder={this.props.todoDescription || 'select filter'}
                                                    value={this.props.todoDescription}
                                                    onChange={this.props.onChange}/>
                                         </Col>

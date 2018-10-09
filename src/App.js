@@ -8,7 +8,7 @@ import Create from "./components/Create";
 import axios from 'axios';
 
 import TodoList from "./components/TodoList";
-import TestPage from "./components/TestPage";
+
 
 var config = {
     apiKey: "AIzaSyArehR3T9gCp9bfqXZpeByvw1Ll_Zy8gEI",
@@ -28,7 +28,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoTitle: '',
+            id:'',
+            todoTitle: 'asdfasdfsfasd',
             todoDescription: '',
             todoPriority: '',
             todos: []
@@ -102,19 +103,18 @@ class App extends Component {
         });
 
     };
-    updateIt = (event) => {
-        const id = event.target.value;
-        var todoForUpdate = this.state.todoArray.forEach(function (todo) {
-            if (id == todo.id) {
-                return {
-                    todoId: id,
-                    todoTitle: todo.title,
-                    todoDescription: todo.description,
-                    todoPriority: todo.priority
-                };
+    updateIt = (item) => {
 
-            }
+
+        // const item = event.target.value;
+        console.log('itemforUpdate', item);
+        this.setState({
+            todoTitle: item.title,
+            todoDescription: item.description,
+            todoPriority: item.priority,
+            id:item.id
         });
+      
 
 
     }
@@ -133,8 +133,9 @@ class App extends Component {
                 <div>
                     <Create onSubmit={this.handleSubmit} onChange={this.handleChange} stateObj={this.state}/>
 
-                    <PersistableTodoList persistablePath={'todoList'} formValue={this.state.todos} onDelete={this.deleteIt}
-                                         onUpdate={this.updateIt}/>
+                    <PersistableTodoList persistablePath={'todoList'} formValue={this.state.todos}
+                                         onDelete={this.deleteIt}
+                                         onUpdateItem={this.updateIt}/>
                 </div>
 
             </div>

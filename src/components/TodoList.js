@@ -71,8 +71,8 @@ class TodoList extends Component {
                                             <Button color="secondary" size="sm" block onClick={this.props.onDelete}
                                                     value={item.id}>Delete it</Button>
 
-                                            <Button color="secondary" size="sm" block onClick={this.props.onUpdate}
-                                                    value={item.id}>Update it</Button>
+                                            {/*<Button color="secondary" size="sm" block onClick={this.props.onUpdate}*/}
+                                            <Button color="secondary" size="sm" block onClick={this.props.onUpdateItem.bind(this, item)} >Update it</Button>
                                         </td>
                                     </tr>
                                 )
