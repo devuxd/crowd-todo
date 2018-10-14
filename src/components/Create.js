@@ -93,11 +93,11 @@ class Create extends Component {
                                     <FormGroup row>
 
                                         {/*<Col sm={{size: 3, offset: 5}}>*/}
-                                        {/*<Col sm={1}/>*/}
-                                        {/*<Col sm={7}>*/}
-                                        <Button color="primary" size="lg" block>Save or update</Button>
+                                        <Col sm={4}/>
+                                        <Col sm={6}>
+                                        <Button color="primary" size="md" block>Save or update</Button>
+                                        </Col>
                                         {/*</Col>*/}
-                                        {/*/!*</Col>*!/*/}
                                         {/*<Col sm={1}/>*/}
                                     </FormGroup>
 
