@@ -55,22 +55,39 @@ class App extends Component {
     };
 
     updateTodo(){
+        const dateAndTimeOptions = {
+            weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        };
+        const timeOptions = {
+            hour: "2-digit",
+            minute: "2-digit"
+        };
+        const todoDueDateFormatted= '';
+
         const todo = {
             id: this.state.id,
             title: this.state.todoTitle,
             description: this.state.todoDescription,
-            priority: 2,
+            dueDate : this.state.dueDate.split('-')[1]+"-"+this.state.dueDate.split('-')[2]+"-"+this.state.dueDate.split('-')[0],
+            priority: this.state.todoPriority,
+            status: this. state.status,
+            createdTime: new Date().toLocaleTimeString("en-us", timeOptions),
+            createdDate: new Date().toLocaleTimeString("en-us", dateAndTimeOptions),
             userId: 'emad.aghayi',
             dataStoreId: 'schoolTasks'
         };
-        console.log('todo: ', todo);
+        console.log('todo for update: ', todo);
         axios.post('/endpoints/updateTodo', {todo})
             .then(res => {
                     if (res.status === 200) {
                         this.setState({
                             todoTitle: '',
-                            todoDescription: '',
-                            todoPriority: 1
+                            todoDescription: ''
                         });
 
                         alert("You have updated a todo Successfully!");
@@ -92,7 +109,7 @@ class App extends Component {
             id: rand,
             title: this.state.todoTitle,
             description: this.state.todoDescription,
-           dueDate : this.state.dueDate,
+           dueDate : this.state.dueDate.split('-')[1]+"-"+this.state.dueDate.split('-')[2]+"-"+this.state.dueDate.split('-')[0],
             priority: this.state.todoPriority,
             status: this. state.status,
             userId: 'emad.aghayi',
@@ -144,17 +161,18 @@ class App extends Component {
 
     };
     updateIt = (item) => {
-
-
-        // const item = event.target.value;
-        console.log('itemforUpdate', item);
-
         document.getElementById("titleId").value = item.title;
         console.log('title updated', document.getElementById("titleId").value);
         document.getElementById("descId").value = item.description;
-        document.getElementById("priorityId").value = item.description;
+        document.getElementById("dueDateId").value = item.dueDate;
         this.setState({
-            id: item.id
+            id: item.id,
+            todoTitle: item.title,
+            dueDate: item.dueDate,
+            todoDescription: item.description,
+            todoPriority: item.priority,
+            status: item.status
+
         });
 
 
