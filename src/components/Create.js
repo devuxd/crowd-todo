@@ -27,7 +27,7 @@ class Create extends Component {
                                             <Label for="title"> Title </Label>
                                         </Col>
                                         <Col sm={6}>
-                                            <Input type="text" id="titleId" name="todoTitle"
+                                            <Input type="text" id="titleId" name="todoTitle" required
                                                    value={this.props.todoTitle} onChange={this.props.onChange}/>
                                         </Col>
                                     </FormGroup>
@@ -37,7 +37,7 @@ class Create extends Component {
                                             <Label for="descId"> Description </Label>
                                         </Col>
                                         <Col sm={6}>
-                                            <Input type="textarea" id="descId" name="todoDescription"
+                                            <Input type="textarea" id="descId" name="todoDescription" required
                                                    value={this.props.todoDescription} onChange={this.props.onChange}/>
                                         </Col>
                                     </FormGroup>
@@ -47,7 +47,7 @@ class Create extends Component {
                                             <Label for="dueDateId">Due Date</Label>
                                         </Col>
                                         <Col sm={6}>
-                                            <Input type="date" name="dueDate" id="dueDateId" value={this.props.dueDate}
+                                            <Input type="date" name="dueDate" id="dueDateId" value={this.props.dueDate} required
                                                    onChange={this.props.onChange} placeholder="date placeholder"/>
                                         </Col>
                                     </FormGroup>

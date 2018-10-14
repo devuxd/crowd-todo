@@ -33,7 +33,7 @@ class App extends Component {
             todoTitle: '',
             dueDate: '',
             todoDescription: '',
-            todoPriority: '',
+            todoPriority: 'Low',
             status:'in-progress',
             todos: []
         };
