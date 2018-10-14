@@ -92,8 +92,9 @@ class App extends Component {
             id: rand,
             title: this.state.todoTitle,
             description: this.state.todoDescription,
-            // priority: this.state.todoPriority,
-            priority: 2,
+           dueDate : this.state.dueDate,
+            priority: this.state.todoPriority,
+            status: this. state.status,
             userId: 'emad.aghayi',
             dataStoreId: 'schoolTasks'
         };
@@ -103,8 +104,7 @@ class App extends Component {
                     if (res.status === 200) {
                         this.setState({
                             todoTitle: '',
-                            todoDescription: '',
-                            todoPriority: 1
+                            todoDescription: ''
                         });
 
                         alert("You have saved a todo Successfully!");

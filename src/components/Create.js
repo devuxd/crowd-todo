@@ -72,23 +72,6 @@ class Create extends Component {
                                                          inline/>
                                         </Col>
                                     </FormGroup>
-                                    {/*<FormGroup row>*/}
-                                    {/*<Col sm={1}/>*/}
-                                    {/*<Col sm={3}>*/}
-                                    {/*<Label for="priorityId"> Priority</Label>*/}
-                                    {/*</Col>*/}
-                                    {/*<Col sm={6}>*/}
-                                    {/*<Input type="select" id="priorityId" name="todoPriority"*/}
-                                    {/*value={this.props.todoPriority} onChange={this.props.onChange}>*/}
-                                    {/*<option value="1">Low</option>*/}
-                                    {/*<option value="2">Medium</option>*/}
-                                    {/*<option value="3">High</option>*/}
-                                    {/*<option value="4">Urgent</option>*/}
-                                    {/*</Input>*/}
-
-                                    {/*</Col>*/}
-                                    {/*</FormGroup>*/}
-
                                     <FormGroup row>
                                         <Col sm={1}/>
                                         <Col sm={3}>

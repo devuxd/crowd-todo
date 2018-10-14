@@ -7,7 +7,6 @@ const JsonTable = require('ts-react-json-table');
 class TodoList extends Component {
 
 
-
     fetchData() {
         if (this.props.data.current == null) {
             return null;
@@ -29,7 +28,8 @@ class TodoList extends Component {
                 "title": result[i].title,
                 "description": result[i].description,
                 "status": result[i].status,
-                // "priority": result[i].priority,
+                "priority": result[i].priority,
+                "dueDate": result[i].dueDate,
                 "address": result[i].address,
                 "repeat": result[i].repeat
             });
@@ -41,8 +41,8 @@ class TodoList extends Component {
     }
 
     render() {
-        const data =this.fetchData();
-        return ( data &&
+        const data = this.fetchData();
+        return (data &&
             <div>
 
                 <Row>
@@ -55,6 +55,8 @@ class TodoList extends Component {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Status</th>
+                                <th>Due date</th>
+                                <th>Priority</th>
                                 <th>Operation</th>
                             </tr>
                             </thead>
@@ -66,13 +68,17 @@ class TodoList extends Component {
                                         <td>{item.title}</td>
                                         <td>{item.description}</td>
                                         <td>{item.status}</td>
+                                        <td>{item.dueDate}</td>
+                                        <td>{item.priority}</td>
 
                                         <td>
-                                            <Button color="secondary" size="sm" block onClick={this.props.onDelete}
-                                                    value={item.id}>Delete it</Button>
+                                            <Button color="secondary" size="sm"  onClick={this.props.onDelete}
+                                                    value={item.id}>Delete it</Button> {' '}
 
                                             {/*<Button color="secondary" size="sm" block onClick={this.props.onUpdate}*/}
-                                            <Button color="secondary" size="sm" block onClick={this.props.onUpdateItem.bind(this, item)} >Update it</Button>
+                                            <Button color="secondary" size="sm"
+                                                    onClick={this.props.onUpdateItem.bind(this, item)}>Update
+                                                it</Button>
                                         </td>
                                     </tr>
                                 )
