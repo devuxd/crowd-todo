@@ -25,13 +25,16 @@ const PersistableTodoList = PersistableContainer(TodoList, firePathTodoList);
 
 class App extends Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
-            id:'',
-            todoTitle: 'asdfasdfsfasd',
+            id: '',
+            todoTitle: '',
+            dueDate: '',
             todoDescription: '',
             todoPriority: '',
+            status:'in-progress',
             todos: []
         };
     }
@@ -42,8 +45,46 @@ class App extends Component {
     };
 
     handleSubmit = (event) => {
-        // alert('A name was submitted: ' + this.state.todoTitle + 'desc: ' + this.state.todoDescription);
+
         event.preventDefault();
+        if (this.state.id !== '') {
+            this.updateTodo();
+        } else {
+            this.saveTodo();
+        }
+    };
+
+    updateTodo(){
+        const todo = {
+            id: this.state.id,
+            title: this.state.todoTitle,
+            description: this.state.todoDescription,
+            priority: 2,
+            userId: 'emad.aghayi',
+            dataStoreId: 'schoolTasks'
+        };
+        console.log('todo: ', todo);
+        axios.post('/endpoints/updateTodo', {todo})
+            .then(res => {
+                    if (res.status === 200) {
+                        this.setState({
+                            todoTitle: '',
+                            todoDescription: '',
+                            todoPriority: 1
+                        });
+
+                        alert("You have updated a todo Successfully!");
+
+                    } else {
+                        alert("Error:" + res);
+                    }
+                    console.log('addTodo response: ', res);
+                    // console.log(res.data);
+                }
+            );
+    };
+
+    saveTodo() {
         const min = 1;
         const max = 10000;
         const rand = min + Math.floor(Math.random() * (max - min));
@@ -74,9 +115,8 @@ class App extends Component {
                     console.log('addTodo response: ', res);
                     // console.log(res.data);
                 }
-            )
-
-    };
+            );
+    }
 
     deleteIt = (event) => {
 
@@ -108,13 +148,14 @@ class App extends Component {
 
         // const item = event.target.value;
         console.log('itemforUpdate', item);
+
+        document.getElementById("titleId").value = item.title;
+        console.log('title updated', document.getElementById("titleId").value);
+        document.getElementById("descId").value = item.description;
+        document.getElementById("priorityId").value = item.description;
         this.setState({
-            todoTitle: item.title,
-            todoDescription: item.description,
-            todoPriority: item.priority,
-            id:item.id
+            id: item.id
         });
-      
 
 
     }

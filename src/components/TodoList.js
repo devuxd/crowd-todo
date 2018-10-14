@@ -21,7 +21,7 @@ class TodoList extends Component {
             result.push(todoListJson.todoList[key]);
         }
 
-        console.log('datalist',result);
+        //console.log('datalist',result);
         const result2 = [];
         for (var i = 0; i < result.length; i++) {
             result2.push({
