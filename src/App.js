@@ -90,7 +90,7 @@ class App extends Component {
                             todoDescription: ''
                         });
 
-                        alert("You have updated a todo Successfully!");
+                       // alert("You have updated a todo Successfully!");
 
                     } else {
                         alert("Error:" + res);
@@ -124,7 +124,7 @@ class App extends Component {
                             todoDescription: ''
                         });
 
-                        alert("You have saved a todo Successfully!");
+                      //  alert("You have saved a todo Successfully!");
 
                     } else {
                         alert("Error:" + res);
@@ -150,7 +150,7 @@ class App extends Component {
             console.log('response', response);
 
             if (response.status === 200) {
-                alert("You have DELETED a todo Successfully!");
+              //  alert("You have DELETED a todo Successfully!");
                 console.log('ex4');
             } else {
                 alert("Error, failed to DELETE!");
